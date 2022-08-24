@@ -1,0 +1,4 @@
+/*
+This file contains constant values that will be used accross widgets
+*/
+
