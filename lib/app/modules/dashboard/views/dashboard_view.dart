@@ -10,19 +10,25 @@ class DashboardView extends GetView<DashboardController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-		crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-			const SizedBox(height: 12,),
-            const Text(
-              'DashboardView is working, and will be replaced with actual content later',
-              style: TextStyle(fontSize: 20),
-            ),
-			const SizedBox(height: 12,),
-			// TODO: add code to go to login view
-			ElevatedButton(onPressed: (){}, child: const Text("Login")),
-			const SizedBox(height: 12,),
-			// TODO: add code to go to login view
-			ElevatedButton(onPressed: (){}, child: const Text("Register")),
+          const SizedBox(
+            height: 12,
+          ),
+          const Text(
+            'DashboardView is working, and will be replaced with actual content later',
+            style: TextStyle(fontSize: 20),
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          // TODO: add code to go to login view
+          ElevatedButton(onPressed: () {}, child: const Text("Login")),
+          const SizedBox(
+            height: 12,
+          ),
+          // TODO: add code to go to login view
+          ElevatedButton(onPressed: () {}, child: const Text("Register")),
         ],
       ),
     );

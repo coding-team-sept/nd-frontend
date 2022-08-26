@@ -19,7 +19,7 @@ void main() async {
       title: "ND Telemedicine",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
-	  theme: themeData,
+      theme: themeData,
     ),
   );
 }
