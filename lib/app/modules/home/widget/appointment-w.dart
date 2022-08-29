@@ -3,13 +3,18 @@ import 'package:nd/app/modules/home/model/appointment_model.dart';
 
 class AppointmentTile extends StatelessWidget {
   final AppointmentModel data;
-  const AppointmentTile(this.data, {key}) : super(key: key);
+  final Function(String) tapCallback;
+  const AppointmentTile(this.data, this.tapCallback, {key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () => tapCallback(data.id),
       title: Text(data.name),
       subtitle: Text(data.time),
+      trailing: Chip(
+        label: Text(data.isOnline ? "ONLINE" : "OFFLINE"),
+      ),
     );
   }
 }

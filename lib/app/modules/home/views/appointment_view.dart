@@ -7,6 +7,7 @@ import '../widget/appointment-w.dart';
 
 class AppointmentView extends GetView<AppointmentController> {
   const AppointmentView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +18,10 @@ class AppointmentView extends GetView<AppointmentController> {
         ),
         body: Obx(
           () => ListView.builder(
-              itemBuilder: (context, index) =>
-                  AppointmentTile(controller.appointmentData[index]),
+              itemBuilder: (context, index) => AppointmentTile(
+                    controller.appointmentData[index],
+                    controller.showAppointmentDetail,
+                  ),
               itemCount: controller.appointmentData.length),
         ));
   }
