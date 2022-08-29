@@ -18,24 +18,17 @@ class AppointmentController extends GetxController {
         id: "doe", name: "John Doe", time: "23 August 2022", isOnline: true),
   ].obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   void newAppointment() => Get.toNamed(Routes.CREATE_APPOINTMENT);
 
-  void showAppointmentDetail(String id) {
+  void showAppointmentDetail(String id, bool isOnline) {
+    if (isOnline) {
+      Get.dialog(const AlertDialog(
+        title: Text("Booking is Offline"),
+        content: Text("Please go to the clinic and meet the doctor directly"),
+      ));
+
+      return;
+    }
     Get.dialog(AlertDialog(
       title: const Text("Not implemented"),
       content: Text(id),
