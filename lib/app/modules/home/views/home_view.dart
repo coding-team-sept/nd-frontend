@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nd/app/modules/home/controllers/dashboard_controller.dart';
 import 'package:nd/app/modules/home/views/dashboard_view.dart';
-import 'package:nd/app/modules/home/controllers/appointment_controller.dart';
 import 'package:nd/app/modules/home/views/appointment_view.dart';
 
 import '../controllers/home_controller.dart';
@@ -13,7 +12,6 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Get.put(DashboardController());
-    Get.put(AppointmentController());
 
     return DefaultTabController(
       length: 3,
