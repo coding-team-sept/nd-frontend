@@ -10,6 +10,7 @@ dependencies:
   get: 4.6.5
   json_theme: 4.0.0+8
   dio: 4.0.6
+  intl: 0.17.0
   flutter: 
     sdk: flutter
 

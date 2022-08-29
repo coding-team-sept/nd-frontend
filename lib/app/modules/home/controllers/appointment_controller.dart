@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nd/app/routes/app_pages.dart';
 
 import '../model/appointment_model.dart';
 
@@ -32,9 +33,7 @@ class AppointmentController extends GetxController {
     super.onClose();
   }
 
-  void newAppointment() {
-    // Navigate to new appointment screen
-  }
+  void newAppointment() => Get.toNamed(Routes.CREATE_APPOINTMENT);
 
   void showAppointmentDetail(String id) {
     Get.dialog(AlertDialog(
