@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:nd/app/modules/register/views/register_view.dart';
 
 import '../controllers/dashboard_controller.dart';
 
@@ -28,7 +29,7 @@ class DashboardView extends GetView<DashboardController> {
             height: 12,
           ),
           // TODO: add code to go to login view
-          ElevatedButton(onPressed: () {}, child: const Text("Register")),
+          ElevatedButton(onPressed: ()=>Get.to(RegisterView()), child: const Text("Register")),
         ],
       ),
     );
