@@ -25,7 +25,7 @@ class RegisterView extends GetView<RegisterController> {
                   child: ListView(children: [
                     Text('Welcome',style: Get.theme.textTheme.displaySmall),
                     const SizedBox(height: 4,),
-                    const Text('Hello there, Create an account',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16)),
+                     Text('Hello there, Create an account',style: Get.theme.textTheme.bodyText1),
                     const SizedBox(height: 26,),
 
                     const Text('Full name:',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16),),
@@ -78,7 +78,7 @@ class RegisterView extends GetView<RegisterController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text("Already have an account ?"),
-                    TextButton(onPressed: (){}, child: Text('Log In'))
+                    TextButton(onPressed: (){}, child: const Text('Log In'))
                   ],)
 
               ],)
