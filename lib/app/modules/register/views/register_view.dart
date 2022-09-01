@@ -43,11 +43,17 @@ class RegisterView extends GetView<RegisterController> {
                     const SizedBox(height: 4,),
                     const Text('Email:',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16),),
                     const SizedBox(height: 4,),
-                    const TextField(decoration: InputDecoration(
-                      filled: true,
-                      hintText: "Enter your email",
 
-                    ),),
+
+                    Obx(
+                      ()=>  TextField(
+                        onChanged: controller.onEmailChange,
+                        decoration: InputDecoration(
+                        filled: true,
+                        hintText: "Enter your email",
+                        errorText: controller.emailError.value ==""?null:controller.emailError.value,
+                      ),),
+                    ),
 
                     const SizedBox(height: 4,),
                     const Text('Password:',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16),),
@@ -75,7 +81,7 @@ class RegisterView extends GetView<RegisterController> {
                         decoration: InputDecoration(
                         filled: true,
                         hintText: "Confirm your password",
-                        errorText: controller.confirmPassword.value==""?null:controller.confirmPasswordError.value,
+                        errorText: controller.confirmPasswordError.value==""?null:controller.confirmPasswordError.value,
 
                       ),),
                     ),
