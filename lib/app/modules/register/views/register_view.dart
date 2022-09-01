@@ -30,11 +30,16 @@ class RegisterView extends GetView<RegisterController> {
 
                     const Text('Full name:',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16),),
                     const SizedBox(height: 4,),
-                    const TextField(decoration: InputDecoration(
-                      filled: true,
-                      hintText: "Enter your full name",
 
+                     Obx(
+                       ()=> TextField(
+                        onChanged:controller.onNameChange,
+                        decoration: InputDecoration(
+                        filled: true,
+                        hintText: "Enter your full name",
+                        errorText: controller.fullNameError.value ==""?null:controller.fullNameError.value,
                     ),),
+                     ),
                     const SizedBox(height: 4,),
                     const Text('Email:',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16),),
                     const SizedBox(height: 4,),
@@ -43,31 +48,44 @@ class RegisterView extends GetView<RegisterController> {
                       hintText: "Enter your email",
 
                     ),),
+
                     const SizedBox(height: 4,),
                     const Text('Password:',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16),),
                     const SizedBox(height: 4,),
-                    const TextField(decoration: InputDecoration(
-                      filled: true,
-                      hintText: "Enter your password",
 
-                    ),),
+                    Obx(
+                      ()=> TextField(
+                        onChanged: controller.onPasswordChange,
+                        decoration: InputDecoration(
+                        filled: true,
+                        hintText: "Enter your password",
+                        errorText: controller.passwordError.value ==""?null:controller.passwordError.value,
+
+                      ),),
+                    ),
+
                     const SizedBox(height: 4,),
-
                     const Text('Confirm Password:',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16),),
                     const SizedBox(height: 4,),
-                    const TextField(decoration: InputDecoration(
-                      filled: true,
-                      hintText: "Confirm your password",
 
-                    ),),
+
+                    Obx(
+                      ()=> TextField(
+                        onChanged: controller.onConfirmPasswordChange,
+                        decoration: InputDecoration(
+                        filled: true,
+                        hintText: "Confirm your password",
+                        errorText: controller.confirmPassword.value==""?null:controller.confirmPasswordError.value,
+
+                      ),),
+                    ),
                     const SizedBox(height: 26,),
 
 
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: (){},
-
+                        onPressed: controller.signUp,
                         child: const Text("SIGN UP"),),),
 
                     //yong size box baoqilai ranhou infinty qu lakai
