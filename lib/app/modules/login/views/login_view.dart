@@ -42,10 +42,17 @@ class LoginView extends GetView<LoginController> {
                 const SizedBox(
                   height: 8,
                 ),
-                const TextField(
-                  decoration: InputDecoration(
+                Obx(
+                  () => TextField(
+                    onChanged: controller.onEmailChange,
+                    decoration: InputDecoration(
                       filled: true, //fill the background colour
-                      hintText: "johndoe@example.com"),
+                      hintText: "johndoe@example.com",
+                      errorText: controller.emailError.value == ""
+                          ? null
+                          : controller.emailError.value,
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 32,
@@ -57,10 +64,21 @@ class LoginView extends GetView<LoginController> {
                 const SizedBox(
                   height: 8,
                 ),
-                const TextField(
-                  decoration: InputDecoration(
-                      filled: true, //fill the background colour
-                      hintText: "********"),
+                Obx(
+                  () => TextField(
+                    obscureText: controller.showPassword.value,
+                    onChanged: controller.onPasswordChange,
+                    decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                          onPressed: controller.toggleShowPassword,
+                          icon: Icon(Icons.remove_red_eye),
+                        ),
+                        filled: true, //fill the background colour
+                        hintText: "********",
+                        errorText: controller.passwordError.value == ""
+                            ? null
+                            : controller.passwordError.value),
+                  ),
                 ),
                 const SizedBox(
                   height: 40,
@@ -69,7 +87,7 @@ class LoginView extends GetView<LoginController> {
                   height: 40,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: controller.login,
                     child: const Text("Login"),
                   ),
                 ),
