@@ -24,21 +24,21 @@ class RegisterView extends GetView<RegisterController> {
                     children: [
                       Text('Welcome', style: Get.theme.textTheme.displaySmall),
                       const SizedBox(
-                        height: 4,
+                        height: 8,
                       ),
                       Text('Hello there, Create an account',
                           style: Get.theme.textTheme.bodyText1),
                       const SizedBox(
-                        height: 26,
+                        height: 32,
                       ),
 
                       const Text(
                         'Full name:',
                         style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 16),
+                            fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(
-                        height: 4,
+                        height: 8,
                       ),
 
                       Obx(
@@ -54,15 +54,15 @@ class RegisterView extends GetView<RegisterController> {
                         ),
                       ),
                       const SizedBox(
-                        height: 4,
+                        height: 8,
                       ),
                       const Text(
                         'Email:',
                         style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 16),
+                            fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(
-                        height: 4,
+                        height: 8,
                       ),
 
                       Obx(
@@ -79,15 +79,15 @@ class RegisterView extends GetView<RegisterController> {
                       ),
 
                       const SizedBox(
-                        height: 4,
+                        height: 8,
                       ),
                       const Text(
                         'Password:',
                         style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 16),
+                            fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(
-                        height: 4,
+                        height: 8,
                       ),
 
                       Obx(
@@ -109,15 +109,15 @@ class RegisterView extends GetView<RegisterController> {
                       ),
 
                       const SizedBox(
-                        height: 4,
+                        height: 8,
                       ),
                       const Text(
                         'Confirm Password:',
                         style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 16),
+                            fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(
-                        height: 4,
+                        height: 8,
                       ),
 
                       Obx(
@@ -139,10 +139,11 @@ class RegisterView extends GetView<RegisterController> {
                         ),
                       ),
                       const SizedBox(
-                        height: 26,
+                        height: 32,
                       ),
 
                       SizedBox(
+                        height: 40,
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: controller.signUp,
