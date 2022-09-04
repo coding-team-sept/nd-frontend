@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:nd/app/routes/app_pages.dart';
 
 class RegisterController extends GetxController {
   final fullName = "".obs;
@@ -14,6 +17,8 @@ class RegisterController extends GetxController {
 
   final showPassword = true.obs;
   final showConfirmPassword = true.obs;
+
+  final isLoading = false.obs;
 
   void toggleShowPassword() {
     showPassword.value = !showPassword.value;
@@ -36,6 +41,46 @@ class RegisterController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  void finishSignUp() async {
+    print('uhuh');
+    isLoading.value = true;
+    await Future.delayed(const Duration(seconds: 1));
+    //send request to server
+    var url = 'http://10.0.2.2:9000/api/v1';
+
+    try {
+      var response = await Dio().post('$url/register', data: {
+        'name': fullName.value,
+        'email': email.value,
+        'password': password.value,
+      });
+      isLoading.value = false;
+      if (response.statusCode == 201) {
+        print('success');
+        print(response.data['data']['token']['token']);
+        const storage = FlutterSecureStorage();
+        await storage.write(key: 'token',value: response.data['data']['token']['token']);
+
+        Get.offNamedUntil(Routes.HOME, (route) => false);
+
+
+
+      } else {
+        Get.dialog(AlertDialog(
+          title: Text('Error'),
+          content: Text(response.data['error']['message']),
+        ));
+      }
+      //this is from website DIO Flutter, Copy that, but not found dio so we Make a new Dio() and import.
+    } on DioError catch (e, _) {
+      isLoading.value = false;
+      Get.dialog(AlertDialog(
+        title: Text('Error'),
+        content: Text(e.response?.data['error']['message'] ?? 'Unknown data'),
+      ));
+    }
   }
 
   void onNameChange(String newName) => fullName.value = newName;
@@ -94,8 +139,9 @@ class RegisterController extends GetxController {
         title: Text("Sign Up Failed"),
         content: Text("Please check your credentials"),
       ));
-    } else {
-      Get.dialog(const AlertDialog(title: Text("Register Success")));
+      return;
     }
+
+    finishSignUp();
   }
 }
