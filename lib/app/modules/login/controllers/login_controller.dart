@@ -1,5 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+
+import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
 
@@ -10,6 +14,8 @@ class LoginController extends GetxController {
   final passwordError = "".obs;
 
   final showPassword = true.obs;
+
+  final isLoading = false.obs;
 
   void toggleShowPassword(){
     showPassword.value = !showPassword.value;
@@ -34,6 +40,34 @@ class LoginController extends GetxController {
 
   void onPasswordChange(String newPassword) =>password.value = newPassword;
 
+  void doSignUp() async{
+    isLoading.value = true;
+    await Future.delayed(Duration(seconds: 1));
+
+    //send request to server
+    var url = "http://10.0.2.2:9000/api/v1";
+    try{
+      var response = await Dio().post('$url/login', data:{
+        'email': email.value,
+        'password': password.value,
+      });
+      isLoading.value = false;
+      if(response.statusCode == 201){
+        print("success");
+        print(response.data["data"]["token"]["token"]);
+
+        var storage = const FlutterSecureStorage();
+        await storage.write(key: 'token', value: response.data["data"]["token"]["token"]);
+        Get.offNamedUntil(Routes.HOME, (route) => false);
+
+    }else{
+        Get.dialog(AlertDialog(title: Text("Error"), content: Text(response.data['error']['message']),));
+    }
+    }on DioError catch(e, _){
+      isLoading.value = false;
+      Get.dialog(AlertDialog(title: Text("Error"), content: Text(e.response?.data['error']['message']??"Unknown error!"),));
+    }
+  }
 
   void login(){
     bool success = true;
@@ -56,13 +90,13 @@ class LoginController extends GetxController {
     }
 
     if (!success){
-      Get.dialog(AlertDialog(
+      Get.dialog(const AlertDialog(
         title: Text("Sign In Failed"),
         content: Text("Please check your email and password"),
       ));
+      return;
     }
-
-
+    doSignUp();
 
   }
 
