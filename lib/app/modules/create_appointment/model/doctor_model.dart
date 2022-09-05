@@ -1,6 +1,6 @@
 class DoctorModel {
   String name;
-  String id;
+  int id;
 
   DoctorModel({required this.name, required this.id});
 }

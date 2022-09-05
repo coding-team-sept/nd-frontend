@@ -1,5 +1,5 @@
 class AppointmentModel {
-  String id;
+  int id;
   String name;
   String time;
   bool isOnline;

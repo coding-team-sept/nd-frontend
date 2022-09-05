@@ -38,22 +38,30 @@ class CreateAppointmentView extends GetView<CreateAppointmentController> {
                 ),
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                  itemCount: controller.doctorData.length,
-                  itemBuilder: (context, index) => ListTile(
-                        onTap: () => controller
-                            .doBooking(controller.doctorData[index].id),
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.greenAccent.shade700,
-                          child: Text(
-                            controller.doctorData[index].name[0],
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ),
-                        title: Text(controller.doctorData[index].name),
-                        subtitle: const Text("Available"),
-                      )),
+            Obx(
+              () => controller.isLoading.value
+                  ? const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                  : Expanded(
+                      child: ListView.builder(
+                          itemCount: controller.doctorData.length,
+                          itemBuilder: (context, index) => ListTile(
+                                onTap: () => controller
+                                    .doBooking(controller.doctorData[index].id),
+                                leading: CircleAvatar(
+                                  backgroundColor: Colors.greenAccent.shade700,
+                                  child: Text(
+                                    controller.doctorData[index].name[0],
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                title: Text(controller.doctorData[index].name),
+                                subtitle: const Text("Available"),
+                              )),
+                    ),
             ),
           ],
         ));

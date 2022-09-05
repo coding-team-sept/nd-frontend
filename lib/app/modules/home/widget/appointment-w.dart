@@ -3,7 +3,7 @@ import 'package:nd/app/modules/home/model/appointment_model.dart';
 
 class AppointmentTile extends StatelessWidget {
   final AppointmentModel data;
-  final Function(String, bool) tapCallback;
+  final Function(int, bool) tapCallback;
   const AppointmentTile(this.data, this.tapCallback, {key}) : super(key: key);
 
   @override

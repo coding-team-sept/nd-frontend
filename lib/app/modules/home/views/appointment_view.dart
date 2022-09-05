@@ -17,12 +17,21 @@ class AppointmentView extends GetView<AppointmentController> {
           child: const Icon(Icons.add),
         ),
         body: Obx(
-          () => ListView.builder(
-              itemBuilder: (context, index) => AppointmentTile(
-                    controller.appointmentData[index],
-                    controller.showAppointmentDetail,
-                  ),
-              itemCount: controller.appointmentData.length),
+          () => controller.isLoading.value
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : ListView.builder(
+                  itemBuilder: (context, index) =>
+                      index == controller.appointmentData.length
+                          ? ElevatedButton(
+                              onPressed: controller.getAppointment,
+                              child: const Text("Refresh"))
+                          : AppointmentTile(
+                              controller.appointmentData[index],
+                              controller.showAppointmentDetail,
+                            ),
+                  itemCount: controller.appointmentData.length + 1),
         ));
   }
 }
