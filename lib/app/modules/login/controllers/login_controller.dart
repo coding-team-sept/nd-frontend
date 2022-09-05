@@ -42,7 +42,7 @@ class LoginController extends GetxController {
 
   void doSignUp() async{
     isLoading.value = true;
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(Duration(seconds: 3));
 
     //send request to server
     var url = "http://10.0.2.2:9000/api/v1";
@@ -52,12 +52,13 @@ class LoginController extends GetxController {
         'password': password.value,
       });
       isLoading.value = false;
-      if(response.statusCode == 201){
+      if(response.statusCode == 200){
         print("success");
         print(response.data["data"]["token"]["token"]);
 
         var storage = const FlutterSecureStorage();
         await storage.write(key: 'token', value: response.data["data"]["token"]["token"]);
+        await storage.write(key: 'role', value: response.data["data"]["user"]["role"]);
         Get.offNamedUntil(Routes.HOME, (route) => false);
 
     }else{
