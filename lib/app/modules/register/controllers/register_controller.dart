@@ -44,7 +44,6 @@ class RegisterController extends GetxController {
   }
 
   void finishSignUp() async {
-    print('uhuh');
     isLoading.value = true;
     await Future.delayed(const Duration(seconds: 1));
     //send request to server
@@ -62,7 +61,7 @@ class RegisterController extends GetxController {
         print(response.data['data']['token']['token']);
         const storage = FlutterSecureStorage();
         await storage.write(key: 'token',value: response.data['data']['token']['token']);
-
+        await storage.write(key: 'role',value: 'patient');
         Get.offNamedUntil(Routes.HOME, (route) => false);
 
 
