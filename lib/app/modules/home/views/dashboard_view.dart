@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import 'package:nd/app/routes/app_pages.dart';
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
@@ -23,12 +24,16 @@ class DashboardView extends GetView<DashboardController> {
             height: 12,
           ),
           // TODO: add code to go to login view
-          ElevatedButton(onPressed: () {}, child: const Text("Login")),
+          ElevatedButton(
+              onPressed: () => Get.toNamed(Routes.LOGIN),
+              child: const Text("Login")),
           const SizedBox(
             height: 12,
           ),
           // TODO: add code to go to login view
-          ElevatedButton(onPressed: () {}, child: const Text("Register")),
+          ElevatedButton(
+              onPressed: () => Get.toNamed(Routes.REGISTER),
+              child: const Text("Register")),
         ],
       ),
     );
