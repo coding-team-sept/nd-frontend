@@ -5,6 +5,15 @@ import 'package:get/get.dart';
 import 'package:nd/app/routes/app_pages.dart';
 
 class RegisterController extends GetxController {
+
+
+  void login() async{
+   Get.offNamedUntil(Routes.LOGIN, (route) => false);
+
+  }
+
+
+
   final fullName = "".obs;
   final email = "".obs;
   final password = "".obs;
