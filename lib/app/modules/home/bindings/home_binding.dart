@@ -9,7 +9,7 @@ class HomeBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ProfileController>(() => ProfileController());
-    Get.lazyPut<HomeController>(() => HomeController());
+    Get.put<HomeController>(HomeController());
     Get.lazyPut<AppointmentController>(() => AppointmentController());
   }
 }
