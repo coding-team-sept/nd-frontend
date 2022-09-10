@@ -101,4 +101,8 @@ class LoginController extends GetxController {
 
   }
 
+  void signUp(){
+    Get.offNamedUntil(Routes.REGISTER, (r) => false);
+  }
+
 }
