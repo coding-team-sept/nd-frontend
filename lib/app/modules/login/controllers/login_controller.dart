@@ -42,7 +42,7 @@ class LoginController extends GetxController {
 
   void doSignUp() async{
     isLoading.value = true;
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(Duration(seconds: 1));
 
     //send request to server
     var url = "http://10.0.2.2:9000/api/v1";
