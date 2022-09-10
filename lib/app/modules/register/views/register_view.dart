@@ -162,7 +162,7 @@ class RegisterView extends GetView<RegisterController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text("Already have an account ?"),
-                      TextButton(onPressed: () {}, child: const Text('Log In'))
+                      TextButton(onPressed: controller.login, child: const Text('Log In'))
                     ],
                   )
                 ],
