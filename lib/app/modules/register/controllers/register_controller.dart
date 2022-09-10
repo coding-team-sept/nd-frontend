@@ -54,7 +54,7 @@ class RegisterController extends GetxController {
 
   void finishSignUp() async {
     isLoading.value = true;
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 1000));
     //send request to server
     var url = 'http://10.0.2.2:9000/api/v1';
 
